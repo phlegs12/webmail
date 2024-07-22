@@ -26,7 +26,7 @@ function delay(ms) {
   }
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + './views/evm-frontend/index.html');
+    res.sendFile(__dirname + '/views/evm-frontend/index.html');
 })
 
 app.get('/explore', (req, res) => {
