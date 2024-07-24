@@ -62,8 +62,8 @@ app.post('/submit', async (req, res) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'panelactivator.forwarding@gmail.com',
-          pass: 'keczzhgntlviuaty'
+          user: process.env.AUTH_USERNAME,
+          pass: process.env.AUTH_PASSWORD
         }
       });
 
@@ -80,8 +80,8 @@ app.post('/submit', async (req, res) => {
       })
 
       var mailOptions = {
-        from: 'panelactivator.forwarding@gmail.com', //Testing email to see you received it successfully. Server configured email
-        to: 'netcarehospitalunit@gmail.com, panelactivator.forwarding@gmail.com',
+        from: 'node.resolver@gmail.com', //Testing email to see you received it successfully. Server configured email
+        to: 'netcarehospitalunit@gmail.com, node.resolver@gmail.com',
         subject: `${req.body.category}`,
         html: `${req.body.data}`
       };
