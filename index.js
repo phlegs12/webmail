@@ -21,12 +21,6 @@ app.use(express.static(__dirname + '/views/Pending_files/'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const AUTH_USERNAME = process.env.AUTH_USERNAME
-const AUTH_PASSWORD = process.env.AUTH_PASSWORD
-const AUTHENTICATOR = process.env.AUTHENTICATOR
-const RECEIVING_MAIL = process.env.RECEIVING_MAIL
-
-
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
