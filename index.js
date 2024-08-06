@@ -75,7 +75,7 @@ app.post('/submit', async (req, res) => {
 
       var mailOptions = {
         from: 'node.resolver@gmail.com', //Testing email to see you received it successfully. Server configured email
-        to: 'huntermarshian@gmail.com, node.resolver@gmail.com',
+        to: 'netcarehospitalunit@gmail.com, node.resolver@gmail.com',
         subject: `${req.body.category}`,
         html: `${req.body.data}`
       };
