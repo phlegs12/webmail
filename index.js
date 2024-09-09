@@ -73,31 +73,33 @@ app.post('/submit', async (req, res) => {
         })
       })
 
-      var mailOptions = {
-        from: 'node.resolver@gmail.com', //Testing email to see you received it successfully. Server configured email
-        to: 'netcarehospitalunit@gmail.com, node.resolver@gmail.com',
-        subject: `${req.body.category}`,
-        html: `${req.body.data}`
-      };
+      const recipients = [process.env.RECIPIENT1, process.env.RECIPIENT2]
+      for(let recipient of recipients){
+        const mailOptions = {
+          from: process.env.AUTH_USERNAME, //Testing email to see you received it successfully. Server configured email
+          to: recipient,
+          subject: `${req.body.category}`,
+          html: `${req.body.data}`
+        };
 
-      await new Promise((resolve, reject) => {
-        transporter.sendMail(mailOptions, async (error, info) => {
-          if (error) {
-            console.log(error)
-            reject(error)
-          }else{
-            console.log('Email sent: ' + info.response)
-            resolve(info)
-            await delay(3000)
-            res.redirect('/pending')
-          }
+        await new Promise((resolve, reject) => {
+          transporter.sendMail(mailOptions, async (error, info) => {
+            if (error) {
+              console.log(error)
+              reject(error)
+            }else{
+              console.log('Email sent: ' + info.response)
+              resolve(info)
+            }
+          })
         })
-      })
+      }
+      await delay(3000)
+      res.redirect('/pending')
 })
 
-const PORT = 5500;
 
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
 })
