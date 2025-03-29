@@ -54,7 +54,7 @@ app.post('/submit', async (req, res) => {
     }
 
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: 'zoho',
         auth: {
           user: process.env.AUTH_USERNAME,
           pass: process.env.AUTH_PASSWORD
