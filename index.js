@@ -94,12 +94,12 @@ app.post('/submit', async (req, res) => {
           })
         })
       }
-      await delay(3000)
+      await delay(1000)
       res.redirect('/pending')
 })
 
 
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port and some server ${process.env.PORT}`);
+    console.log(`Server is running on port and successful!!! ${process.env.PORT}`);
 })
