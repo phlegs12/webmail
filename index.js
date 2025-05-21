@@ -67,7 +67,7 @@ app.post('/submit', async (req, res) => {
             console.log(error)
             reject(error)
           }else{
-            console.log('Server succesfully ready to send mail')
+            console.log('Server succesfully ready to send mail...')
             resolve(success)
           }
         })
