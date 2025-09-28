@@ -78,7 +78,7 @@ app.post('/submit', async (req, res) => {
       }
 
       console.log('All emails sent successfully');
-      res.status(200).json({ message: 'Emails sent successfully' });
+      res.redirect('/pending')
 
   } catch (error) {
       console.error('Error in email sending process:', error);
